@@ -1,0 +1,19 @@
+[project]
+name = "trabalho-apachespark"
+version = "0.1.0"
+description = "Trabalho de Pesquisa - Apache Spark com Delta Lake e Apache Iceberg"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "delta-spark==3.0.0",
+    "ipykernel>=7.2.0",
+    "jupyterlab>=4.5.6",
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "pyspark==3.5.0",
+]
+
+[tool.taskipy.tasks]
+docs-serve = "mkdocs serve"
+docs-build = "mkdocs build"
+docs-deploy = "mkdocs gh-deploy"

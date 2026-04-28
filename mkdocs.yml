@@ -1,0 +1,44 @@
+site_name: Apache Spark com Delta Lake e Apache Iceberg
+site_description: Trabalho de Pesquisa - Arquitetura de Dados - SATC 2026
+site_author: Juliano Felipe
+repo_url: https://github.com/julianocfelipe/trabalho-apachespark
+repo_name: julianocfelipe/trabalho-apachespark
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Modo escuro
+    - scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  features:
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Início: index.md
+  - Apache Spark: spark.md
+  - Delta Lake: delta.md
+  - Apache Iceberg: iceberg.md
