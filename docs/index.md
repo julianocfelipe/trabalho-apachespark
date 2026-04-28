@@ -18,21 +18,7 @@ Para demonstrar os conceitos, utilizamos o cenário de uma **Loja Virtual** com 
 
 ### Modelo Entidade-Relacionamento
 
-```
-+------------------+       +------------------+       +------------------+
-|    CLIENTES      |       |     PEDIDOS      |       |    PRODUTOS      |
-+------------------+       +------------------+       +------------------+
-| PK id (INT)      |<---+  | PK id (INT)      |  +--->| PK id (INT)      |
-|    nome (STRING) |    +--| FK cliente_id    |  |    |    nome (STRING) |
-|    email(STRING) |       | FK produto_id    |--+    |    categoria     |
-|    cidade(STRING)|       |    quantidade    |       |    (STRING)      |
-+------------------+       |    valor_total   |       |    preco(DOUBLE) |
-                           |    (DOUBLE)      |       |    estoque(INT)  |
-                           |    data_pedido   |       +------------------+
-                           |    (STRING)      |
-                           |    status(STRING)|
-                           +------------------+
-```
+![Diagrama ER](assets/er_diagram.png)
 
 ### Fonte de Dados
 
