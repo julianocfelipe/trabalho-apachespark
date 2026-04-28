@@ -26,14 +26,11 @@ derby.log
 *.parquet
 
 # Delta Lake tables
-delta/delta-tables/
-delta/spark-warehouse/
+notebooks/delta-tables/
+notebooks/spark-warehouse/
 
 # Iceberg warehouse
-iceberg/iceberg-warehouse/
-
-# MKDocs site output
-site/
+notebooks/iceberg-warehouse/
 
 # OS
 .DS_Store
