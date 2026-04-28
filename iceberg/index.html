@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Trabalho de Pesquisa - Arquitetura de Dados - SATC 2025">
+        <meta name="description" content="Trabalho de Pesquisa - Arquitetura de Dados - SATC 2026">
       
       
         <meta name="author" content="Juliano Felipe">
@@ -630,52 +630,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#merge-upsert-inserir-ou-atualizar" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MERGE (UPSERT) — Inserir ou Atualizar
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#time-travel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Time Travel
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#schema-evolution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Evolution
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tabelas-de-metadados-iceberg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tabelas de Metadados Iceberg
-      
-    </span>
-  </a>
   
 </li>
       
@@ -880,52 +836,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#merge-upsert-inserir-ou-atualizar" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MERGE (UPSERT) — Inserir ou Atualizar
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#time-travel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Time Travel
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#schema-evolution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Evolution
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tabelas-de-metadados-iceberg" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tabelas de Metadados Iceberg
-      
-    </span>
-  </a>
   
 </li>
       
@@ -973,10 +885,7 @@
 
 <h1 id="apache-iceberg">Apache Iceberg<a class="headerlink" href="#apache-iceberg" title="Permanent link">&para;</a></h1>
 <h2 id="o-que-e-o-apache-iceberg">O que é o Apache Iceberg?<a class="headerlink" href="#o-que-e-o-apache-iceberg" title="Permanent link">&para;</a></h2>
-<p>O <strong>Apache Iceberg</strong> é um formato de tabela aberta de alto desempenho para grandes conjuntos de dados analíticos. Criado originalmente pela Netflix e doado para a Apache Software Foundation, ele foi projetado para resolver os problemas de escalabilidade e confiabilidade dos Data Lakes tradicionais.</p>
-<blockquote>
-<p>"Iceberg trata uma tabela como um <strong>banco de dados relacional</strong>, não como uma pasta de arquivos."</p>
-</blockquote>
+<p>O <strong>Apache Iceberg</strong> é um formato de tabela aberta criado originalmente pela Netflix e depois doado para a Apache Software Foundation. O principal diferencial dele é tratar uma tabela como um objeto com metadados próprios (schema, partições, histórico de versões), ao invés de apenas uma pasta de arquivos Parquet. Isso resolve vários problemas de escalabilidade e consistência dos Data Lakes tradicionais.</p>
 <hr />
 <h2 id="principais-caracteristicas">Principais Características<a class="headerlink" href="#principais-caracteristicas" title="Permanent link">&para;</a></h2>
 <table>
@@ -996,14 +905,6 @@
 <td>Particionamento transparente — queries não precisam especificar partições</td>
 </tr>
 <tr>
-<td><strong>Time Travel</strong></td>
-<td>Snapshots imutáveis permitem consultar qualquer versão histórica</td>
-</tr>
-<tr>
-<td><strong>Schema Evolution</strong></td>
-<td>Adiciona, renomeia e remove colunas sem reescrever dados</td>
-</tr>
-<tr>
 <td><strong>Partition Evolution</strong></td>
 <td>Muda estratégias de particionamento sem migração de dados</td>
 </tr>
@@ -1013,7 +914,7 @@
 </tr>
 <tr>
 <td><strong>Row-level Operations</strong></td>
-<td>UPDATE, DELETE e MERGE nativos</td>
+<td>UPDATE e DELETE nativos</td>
 </tr>
 </tbody>
 </table>
@@ -1140,93 +1041,13 @@
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>+---+-------------+-----------+------+-------+
 </code></pre></div></p>
 <h3 id="delete-remover-dados">DELETE — Remover Dados<a class="headerlink" href="#delete-remover-dados" title="Permanent link">&para;</a></h3>
+<p>Assim como no Delta Lake, o Iceberg também suporta DELETE nativo. No exemplo abaixo removemos produtos sem estoque:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="s2">    DELETE FROM local.loja.produtos</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">    WHERE estoque = 0</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="merge-upsert-inserir-ou-atualizar">MERGE (UPSERT) — Inserir ou Atualizar<a class="headerlink" href="#merge-upsert-inserir-ou-atualizar" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="s2">    MERGE INTO local.loja.clientes AS destino</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s2">    USING clientes_novos AS origem</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="s2">    ON destino.id = origem.id</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="s2">    WHEN MATCHED THEN</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="s2">        UPDATE SET destino.email = origem.email</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="s2">    WHEN NOT MATCHED THEN</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="s2">        INSERT (id, nome, email, cidade)</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="s2">        VALUES (origem.id, origem.nome, origem.email, origem.cidade)</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-<hr />
-<h2 id="time-travel">Time Travel<a class="headerlink" href="#time-travel" title="Permanent link">&para;</a></h2>
-<p>O Iceberg usa <strong>snapshots imutáveis</strong> para manter o histórico:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Ver todos os snapshots</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s2">    SELECT snapshot_id, committed_at, operation</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s2">    FROM local.loja.produtos.snapshots</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Time Travel por snapshot_id</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">spark</span><span class="o">.</span><span class="n">read</span> \
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;snapshot-id&quot;</span><span class="p">,</span> <span class="mi">1234567890</span><span class="p">)</span> \
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;iceberg&quot;</span><span class="p">)</span> \
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;./iceberg-warehouse/loja/produtos&quot;</span><span class="p">)</span> \
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="c1"># Time Travel por timestamp</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="n">spark</span><span class="o">.</span><span class="n">read</span> \
-<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;as-of-timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-10 10:00:00&quot;</span><span class="p">)</span> \
-<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;iceberg&quot;</span><span class="p">)</span> \
-<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>    <span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;./iceberg-warehouse/loja/produtos&quot;</span><span class="p">)</span> \
-<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>    <span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<hr />
-<h2 id="schema-evolution">Schema Evolution<a class="headerlink" href="#schema-evolution" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Adiciona nova coluna sem reescrever dados</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="s2">    ALTER TABLE local.loja.clientes</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="s2">    ADD COLUMN telefone STRING</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Renomeia coluna</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="s2">    ALTER TABLE local.loja.produtos</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="s2">    RENAME COLUMN preco TO preco_brl</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-<hr />
-<h2 id="tabelas-de-metadados-iceberg">Tabelas de Metadados Iceberg<a class="headerlink" href="#tabelas-de-metadados-iceberg" title="Permanent link">&para;</a></h2>
-<p>O Iceberg expõe tabelas especiais para inspecionar metadados:</p>
-<table>
-<thead>
-<tr>
-<th>Tabela de Metadado</th>
-<th>Conteúdo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tabela.snapshots</code></td>
-<td>Histórico de snapshots</td>
-</tr>
-<tr>
-<td><code>tabela.history</code></td>
-<td>Histórico de mudanças</td>
-</tr>
-<tr>
-<td><code>tabela.manifests</code></td>
-<td>Lista de manifest files</td>
-</tr>
-<tr>
-<td><code>tabela.files</code></td>
-<td>Lista de data files</td>
-</tr>
-<tr>
-<td><code>tabela.partitions</code></td>
-<td>Informações de partições</td>
-</tr>
-</tbody>
-</table>
+<p>O Iceberg registra essa operação como um novo snapshot. Os arquivos Parquet anteriores não são apagados imediatamente — o novo snapshot simplesmente não os referencia mais.</p>
 <hr />
 <h2 id="iceberg-vs-delta-lake">Iceberg vs. Delta Lake<a class="headerlink" href="#iceberg-vs-delta-lake" title="Permanent link">&para;</a></h2>
 <table>
@@ -1244,14 +1065,9 @@
 <td>✅</td>
 </tr>
 <tr>
-<td>Time Travel</td>
+<td>UPDATE / DELETE</td>
 <td>✅</td>
 <td>✅</td>
-</tr>
-<tr>
-<td>Schema Evolution</td>
-<td>✅</td>
-<td>✅ (mais completo)</td>
 </tr>
 <tr>
 <td>Partition Evolution</td>

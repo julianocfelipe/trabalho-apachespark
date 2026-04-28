@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Trabalho de Pesquisa - Arquitetura de Dados - SATC 2025">
+        <meta name="description" content="Trabalho de Pesquisa - Arquitetura de Dados - SATC 2026">
       
       
         <meta name="author" content="Juliano Felipe">
@@ -819,7 +819,7 @@
 
 <h1 id="apache-spark-pyspark">Apache Spark (PySpark)<a class="headerlink" href="#apache-spark-pyspark" title="Permanent link">&para;</a></h1>
 <h2 id="o-que-e-o-apache-spark">O que é o Apache Spark?<a class="headerlink" href="#o-que-e-o-apache-spark" title="Permanent link">&para;</a></h2>
-<p>O <strong>Apache Spark</strong> é um motor de processamento de dados distribuído e de código aberto, projetado para ser rápido, versátil e fácil de usar. Ele processa grandes volumes de dados em memória, sendo até <strong>100x mais rápido</strong> que o Hadoop MapReduce em operações em memória.</p>
+<p>O <strong>Apache Spark</strong> é um motor de processamento distribuído de código aberto. A principal vantagem em relação ao Hadoop MapReduce é o processamento <strong>em memória</strong>: em vez de gravar resultados intermediários em disco a cada etapa, o Spark mantém os dados na RAM, o que o torna significativamente mais rápido para cargas de trabalho iterativas e interativas.</p>
 <hr />
 <h2 id="principais-caracteristicas">Principais Características<a class="headerlink" href="#principais-caracteristicas" title="Permanent link">&para;</a></h2>
 <table>
@@ -979,13 +979,7 @@
 </code></pre></div>
 <hr />
 <h2 id="por-que-usar-o-spark-para-data-engineering">Por que usar o Spark para Data Engineering?<a class="headerlink" href="#por-que-usar-o-spark-para-data-engineering" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Escala</strong>: Processa petabytes de dados em clusters distribuídos</li>
-<li><strong>Velocidade</strong>: In-memory computing elimina leituras repetidas de disco</li>
-<li><strong>Versatilidade</strong>: Batch + Streaming + ML em um único framework</li>
-<li><strong>Ecosistema</strong>: Integração nativa com Delta Lake, Iceberg, Hudi, S3, HDFS, Kafka</li>
-<li><strong>SQL nativo</strong>: <code>spark.sql()</code> executa SQL padrão ANSI sobre qualquer fonte de dados</li>
-</ul>
+<p>No contexto de Data Engineering, o Spark virou padrão porque resolve bem três problemas ao mesmo tempo: volume (escala horizontal em clusters), variedade (DataFrames estruturados, semi-estruturados e streams na mesma API) e velocidade (in-memory computing). Além disso, a integração nativa com Delta Lake, Iceberg, S3, HDFS e Kafka faz ele funcionar bem em arquiteturas de Data Lakehouse.</p>
 <hr />
 <h2 id="versoes-utilizadas">Versões utilizadas<a class="headerlink" href="#versoes-utilizadas" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Apache Spark  : 3.5.0
