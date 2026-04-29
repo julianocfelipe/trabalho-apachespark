@@ -70,8 +70,8 @@ uv run jupyter lab
 ```
 
 Abra os notebooks na interface do JupyterLab:
-- `delta/delta_lake.ipynb` — Demonstração do Delta Lake
-- `iceberg/iceberg.ipynb` — Demonstração do Apache Iceberg
+- `notebooks/delta_lake.ipynb` — Demonstração do Delta Lake
+- `notebooks/iceberg.ipynb` — Demonstração do Apache Iceberg
 
 Execute todas as células em ordem (Kernel > Restart & Run All).
 
@@ -94,10 +94,8 @@ trabalho-apachespark/
 ├── .gitignore              # Arquivos ignorados pelo Git
 ├── mkdocs.yml              # Configuração da documentação MKDocs
 │
-├── delta/
-│   └── delta_lake.ipynb    # Notebook: Delta Lake com PySpark
-│
-├── iceberg/
+├── notebooks/
+│   ├── delta_lake.ipynb    # Notebook: Delta Lake com PySpark
 │   └── iceberg.ipynb       # Notebook: Apache Iceberg com PySpark
 │
 └── docs/
@@ -169,3 +167,33 @@ Ambos os notebooks demonstram as mesmas operações no mesmo cenário (Loja Virt
 ![Apache Iceberg](https://img.shields.io/badge/Apache%20Iceberg-1.4.3-4CAF50)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![uv](https://img.shields.io/badge/uv-package%20manager-DE5FE9)
+
+---
+
+## Referências
+
+### Apache Spark / PySpark
+- Apache Spark — documentação oficial: https://spark.apache.org/docs/3.5.0/
+- PySpark API Reference: https://spark.apache.org/docs/3.5.0/api/python/
+- Zaharia, M. et al. *Apache Spark: A Unified Engine for Big Data Processing*. Communications of the ACM, 2016. https://doi.org/10.1145/2934664
+
+### Delta Lake
+- Delta Lake — documentação oficial: https://docs.delta.io/3.0.0/index.html
+- Delta Lake no GitHub: https://github.com/delta-io/delta
+- Armbrust, M. et al. *Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores*. VLDB, 2020. https://doi.org/10.14778/3415478.3415560
+
+### Apache Iceberg
+- Apache Iceberg — documentação oficial: https://iceberg.apache.org/docs/1.4.3/
+- Apache Iceberg — especificação do formato: https://iceberg.apache.org/spec/
+- Apache Iceberg no GitHub: https://github.com/apache/iceberg
+- Ryan Blue et al. *Iceberg: A Fast Table Format for S3*. SIGMOD, 2017. https://doi.org/10.1145/3183713.3190664
+
+### Ferramentas e Ambiente
+- uv — gerenciador de pacotes Python: https://docs.astral.sh/uv/
+- JupyterLab — documentação: https://jupyterlab.readthedocs.io/en/stable/
+- MkDocs — gerador de documentação: https://www.mkdocs.org/
+- MkDocs Material Theme: https://squidfunk.github.io/mkdocs-material/
+- Winutils para Hadoop no Windows: https://github.com/steveloughran/winutils
+
+### Assistência
+- Claude (Anthropic) — auxílio em pesquisas e estruturação do projeto: https://claude.ai
